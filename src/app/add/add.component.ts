@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-add',
@@ -18,8 +18,20 @@ export class AddComponent implements OnInit, OnDestroy {
       city: ['', Validators.required],
       state: ['', Validators.required],
       zip: ['', Validators.required]
-    })
+    }),
+    aliases: this.fb.array([
+      this.fb.control('')
+    ])
   });
+  get aliases() {
+    return this.profileForm.get('aliases') as FormArray;
+  }
+  addAlias() {
+    this.aliases.push(this.fb.control(''));
+  }
+  deleteAlias(i){
+    this.aliases.removeAt(i);
+  }
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);

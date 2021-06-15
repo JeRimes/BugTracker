@@ -5,15 +5,21 @@
         <div class="flex-container">
             <label for="first-name">First Name: </label>
             <input class="form-control" id="first-name" type="text" formControlName="firstName">
-          
+            <div *ngIf="profileForm.controls.firstName.errors?.required" class="alert alert-success">
+                FirstName is required.
+            </div>
+
             <label for="last-name">Last Name: </label>
             <input class="form-control" id="last-name" type="text" formControlName="lastName">
+            <div *ngIf="profileForm.controls.lastName.errors?.required" class="alert alert-success">
+                Name is required.
+            </div>
         </div>
         <div formGroupName="address" class="flex-container">
             <h2>Address</h2>
             <label for="street">Street: </label>
             <input class="form-control" id="street" type="text" formControlName="street">
-          
+
             <label for="city">City: </label>
             <input class="form-control" id="city" type="text" formControlName="city">
           
@@ -23,7 +29,17 @@
             <label for="zip">Zip Code: </label>
             <input class="form-control" id="zip" type="text" formControlName="zip">
           </div>
-
+        <div formArrayName="aliases">
+            <h2>Aliases</h2>
+            <button (click)="addAlias()">+ Add another alias</button>
+            
+            <div *ngFor="let alias of aliases.controls; let i=index">
+              <!-- The repeated alias template -->
+              <label for="alias-{{ i }}">Alias:</label>
+              <input id="alias-{{ i }}" type="text" [formControlName]="i">
+              <button (click)="deleteAlias(i)">- remove this alias</button>
+            </div>
+          </div>
       </form>
       <p>Complete the form to enable button.</p>
       <!-- class="btn btn-primary" -->
