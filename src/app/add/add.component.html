@@ -1,0 +1,36 @@
+
+<div class="flex">
+    <h1>Component add </h1>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()"> 
+        <div class="flex-container">
+            <label for="first-name">First Name: </label>
+            <input class="form-control" id="first-name" type="text" formControlName="firstName">
+          
+            <label for="last-name">Last Name: </label>
+            <input class="form-control" id="last-name" type="text" formControlName="lastName">
+        </div>
+        <div formGroupName="address" class="flex-container">
+            <h2>Address</h2>
+            <label for="street">Street: </label>
+            <input class="form-control" id="street" type="text" formControlName="street">
+          
+            <label for="city">City: </label>
+            <input class="form-control" id="city" type="text" formControlName="city">
+          
+            <label for="state">State: </label>
+            <input class="form-control" id="state" type="text" formControlName="state">
+          
+            <label for="zip">Zip Code: </label>
+            <input class="form-control" id="zip" type="text" formControlName="zip">
+          </div>
+
+      </form>
+      <p>Complete the form to enable button.</p>
+      <!-- class="btn btn-primary" -->
+      <button class="btn btn-success"type="submit" [disabled]="!profileForm.valid">Submit</button>
+      <button class="btn btn-dark" (click)="updateProfile()">Update Profile</button>
+      <p>Form Status: {{ profileForm.status }}</p>
+      <p>Value: {{ profileForm.value | json}}</p>
+    </div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
