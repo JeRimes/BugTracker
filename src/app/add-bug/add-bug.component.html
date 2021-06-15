@@ -1,0 +1,41 @@
+
+<div class="flex">
+    <h1>Add Bug</h1>
+    <form [formGroup]="AddBugForm" (ngSubmit)="onSubmit()"> 
+        <div class="flex-container">
+            <label for="Titre">Title</label>
+            <input class="form-control" id="Titre" type="text" formControlName="Titre">
+            <div *ngIf="AddBugForm.controls.Titre.errors?.required" class="alert alert-success">
+                Title is required.
+            </div>
+
+            <label for="Description">Description : </label>
+            <textarea class="form-control" id="Description" type="text" formControlName="Description">
+            </textarea>
+            <div *ngIf="AddBugForm.controls.Description.errors?.required" class="alert alert-success">
+                Description is required.
+            </div>
+        </div>
+
+        <div *ngFor="let a of listAlias; let index = index; ">
+            <input value="{{a.alias}}">
+            <button (click)="addAlias(a.alias)">+ Add alias</button>
+        </div>
+        <div formArrayName="allAliasView">
+            <h2>Aliases</h2>
+
+            <h2>Aliases selected</h2>
+            <div *ngFor="let allAliasView of allAliasView.controls; let i=index">
+                <input id="allAliasView-{{ i }}" type="text" [formControlName]="i">
+                <button (click)="deleteAlias(i)">- remove this alias</button>
+            </div>
+        </div>
+      </form>
+      <p>Complete the form to enable button.</p>
+      <!-- class="btn btn-primary" -->
+      <button class="btn btn-success"type="submit" [disabled]="!AddBugForm.valid">Submit</button>
+      <p>Form Status: {{ AddBugForm.status }}</p>
+      <p>Value: {{ AddBugForm.value | json}}</p>
+    </div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">

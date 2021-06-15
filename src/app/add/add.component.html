@@ -1,6 +1,6 @@
 
 <div class="flex">
-    <h1>Component add </h1>
+    <h1>Add profil </h1>
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()"> 
         <div class="flex-container">
             <label for="first-name">First Name: </label>
@@ -28,17 +28,6 @@
           
             <label for="zip">Zip Code: </label>
             <input class="form-control" id="zip" type="text" formControlName="zip">
-          </div>
-        <div formArrayName="aliases">
-            <h2>Aliases</h2>
-            <button (click)="addAlias()">+ Add another alias</button>
-            
-            <div *ngFor="let alias of aliases.controls; let i=index">
-              <!-- The repeated alias template -->
-              <label for="alias-{{ i }}">Alias:</label>
-              <input id="alias-{{ i }}" type="text" [formControlName]="i">
-              <button (click)="deleteAlias(i)">- remove this alias</button>
-            </div>
           </div>
       </form>
       <p>Complete the form to enable button.</p>
