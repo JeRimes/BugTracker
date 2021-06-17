@@ -1,0 +1,38 @@
+p{
+    color:red;
+}
+.flex,.flex-container{
+    display:flex;
+    flex-direction: column;
+}
+.flex{
+    width:60vw;
+    height: 100vh;
+    margin:50px auto 0px auto;
+    padding: 20px;
+}
+.flex-container{
+    padding:10px;
+}
+.flex-row{
+    display: flex;
+}
+h1,h2,h3{
+    color:white
+}
+.badge-label{
+    background-color: bisque;
+    padding:10px;
+    border-radius: 10px;
+    margin:10px;
+}
+.badge-label a{
+    margin:0 10px;
+}
+.container-badgelabel{
+    display:flex;
+    align-items: center;
+}
+.btn-small{
+    height: fit-content;
+}

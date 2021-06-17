@@ -1,5 +1,5 @@
 
-<div class="flex">
+<div class="flex bg-dark">
     <h1>Add Bug</h1>
     <form [formGroup]="AddBugForm" (ngSubmit)="onSubmit()"> 
         <div class="flex-container">
@@ -16,24 +16,27 @@
                 Description is required.
             </div>
         </div>
-
-        <div *ngFor="let a of listAlias; let index = index; ">
-            <input value="{{a.alias}}">
-            <button (click)="addAlias(a.alias)">+ Add alias</button>
+        <h2>Aliases</h2>
+        <div class="flex-row">
+            <div class="container-badgelabel"*ngFor="let a of listAlias; let index = index; ">
+                <!-- <input value="{{a.alias}}"> -->
+                <span class="badge-label">{{a.alias}}<a class="btn btn-success btn-small"(click)="addAlias(a.alias)">+ Add</a></span>
+            </div>
         </div>
-        <div formArrayName="allAliasView">
-            <h2>Aliases</h2>
-
-            <h2>Aliases selected</h2>
-            <div *ngFor="let allAliasView of allAliasView.controls; let i=index">
-                <input id="allAliasView-{{ i }}" type="text" [formControlName]="i">
-                <button (click)="deleteAlias(i)">- remove this alias</button>
+   
+        <h2>Aliases selected</h2>
+        <div class="flex-row" formArrayName="allAliasView">
+            <div class="container-badgelabel" *ngFor="let allAliasView of allAliasView.controls; let i=index">
+                <!-- <input id="allAliasView-{{ i }}" type="text" [formControlName]="i"> -->
+                <span class="badge-label"> {{allAliasView.value}} <a class="btn btn-warning"(click)="deleteAlias(i)">- remove</a> </span>
+                
             </div>
         </div>
       </form>
+
       <p>Complete the form to enable button.</p>
       <!-- class="btn btn-primary" -->
-      <button class="btn btn-success"type="submit" [disabled]="!AddBugForm.valid">Submit</button>
+      <button class="btn btn-success" (click)="create()" [disabled]="!AddBugForm.valid">Submit</button>
       <p>Form Status: {{ AddBugForm.status }}</p>
       <p>Value: {{ AddBugForm.value | json}}</p>
     </div>
