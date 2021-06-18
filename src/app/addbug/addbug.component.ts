@@ -1,6 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
 import { FormBuilder ,FormArray, Validators, FormGroup } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Bug } from '../@shared/models/bug';
+import{ServiceService}from'../service.service';
+
 @Component({
   selector: 'app-addbug',
   templateUrl: './addbug.component.html',
@@ -8,10 +11,11 @@ import { Bug } from '../@shared/models/bug';
 })
 
 export class AddBugComponent implements OnInit {
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder,  private route: ActivatedRoute, public ServiceService: ServiceService) { 
     this.createForm();
   }
   AddBugForm:FormGroup;
+
   private createForm(){
     this.AddBugForm = this.fb.group({
       Titre: ['', Validators.required],
@@ -20,11 +24,12 @@ export class AddBugComponent implements OnInit {
       ]),
     });
   }
-
+//une partie du bug
   @Output() BugToSend = new EventEmitter<Partial<Bug>>();
 
 
   listAlias = [{alias: "Important"},{alias:"Moyen"},{alias:"faible"}];
+  listStatus= ["A faire","En cours","Resolue"];
   
   get allAliasView() {
     return this.AddBugForm.get('allAliasView') as FormArray;
@@ -48,8 +53,11 @@ export class AddBugComponent implements OnInit {
     const title = this.AddBugForm.get("Titre").value;
     const description = this.AddBugForm.get("Description").value;
     const alias = this.AddBugForm.get("allAliasView").value;
-    alert(alias);
     this.addNewBug({title:title, description:description, alias:alias});
+    
+    this.ServiceService.create(this.AddBugForm.value).subscribe(res=>{
+      alert("Bug created");
+    })  
   }
 
   addNewBug(value: Partial<Bug>){
@@ -57,8 +65,8 @@ export class AddBugComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-  
+
+
   }
 
 }

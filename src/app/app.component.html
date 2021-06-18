@@ -1,12 +1,18 @@
 <!-- <app-add></app-add> -->
 <!-- <app-addbug></app-addbug> -->
+<a routerLink="/addbug" routerLinkActive="active">Create</a>
+<a routerLink="/showbug" routerLinkActive="active">showbug</a>
 <app-addbug (BugToSend)="addBug($event)"></app-addbug>
+
+<app-showbug *ngFor="let bug of bugs"[bug]="bug"></app-showbug>
+
 <router-outlet></router-outlet>
 
-<h1>app component</h1>
-<ul>
-    <li *ngFor="let bug of bugs"><span>Titre : </span>{{bug.title}} <span>| Description : </span>{{bug.description}}
-        <span>| Alias : </span>{{bug.alias}}
-    
+<input type="button" (click)="register()" value="register">
+
+<!-- <ul>
+    <li *ngFor="let bug of bugs; let index = index;"><span>Titre : </span>{{bug.title}} <span>| Description : </span>{{bug.description}}
+        <span>| Alias : </span>{{bug.alias}} 
+        <button (click)=removeBug(index,bug)>remove</button>
     </li>
-</ul>
+</ul> -->
