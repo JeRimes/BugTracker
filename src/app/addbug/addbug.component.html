@@ -3,16 +3,16 @@
     <h1>Add Bug</h1>
     <form [formGroup]="AddBugForm" (ngSubmit)="onSubmit()"> 
         <div class="flex-container">
-            <label for="Titre">Title</label>
-            <input class="form-control" id="Titre" type="text" formControlName="Titre">
-            <div *ngIf="AddBugForm.controls.Titre.errors?.required" class="alert alert-success">
+            <label for="title">Title</label>
+            <input class="form-control" id="Titre" type="text" formControlName="title">
+            <div *ngIf="AddBugForm.controls.title.errors?.required" class="alert alert-success">
                 Title is required.
             </div>
 
-            <label for="Description">Description : </label>
-            <textarea class="form-control" id="Description" type="text" formControlName="Description">
+            <label for="description">Description : </label>
+            <textarea class="form-control" id="Description" type="text" formControlName="description">
             </textarea>
-            <div *ngIf="AddBugForm.controls.Description.errors?.required" class="alert alert-success">
+            <div *ngIf="AddBugForm.controls.description.errors?.required" class="alert alert-success">
                 Description is required.
             </div>
         </div>
@@ -25,10 +25,10 @@
         </div>
    
         <h2>Aliases selected</h2>
-        <div class="flex-row" formArrayName="allAliasView">
-            <div class="container-badgelabel" *ngFor="let allAliasView of allAliasView.controls; let i=index">
+        <div class="flex-row" formArrayName="alias">
+            <div class="container-badgelabel" *ngFor="let allAliasView of alias.controls; let i=index">
                 <!-- <input id="allAliasView-{{ i }}" type="text" [formControlName]="i"> -->
-                <span class="badge-label"> {{allAliasView.value}} <a class="btn btn-warning"(click)="deleteAlias(i)">- remove</a> </span>
+                <span class="badge-label"> {{alias.value}} <a class="btn btn-warning"(click)="deleteAlias(i)">- remove</a> </span>
                 
             </div>
         </div>

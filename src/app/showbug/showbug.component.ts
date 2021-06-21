@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Bug } from '../@shared/models/bug';
+import{ServiceService}from'../service.service';
 @Component({
   selector: 'app-showbug',
   templateUrl: './showbug.component.html',
@@ -15,9 +16,13 @@ import { Bug } from '../@shared/models/bug';
 })
 export class ShowbugComponent implements OnInit {
   @Input() bug!: Bug;
-  constructor() { }
+  constructor(public ServiceService: ServiceService) { }
 
+  Listbugs: Bug[] = [];
   ngOnInit(): void {
+    this.ServiceService.getAll().subscribe((data: Bug[])=>{
+      this.Listbugs = data;
+    })  
   }
 
 }

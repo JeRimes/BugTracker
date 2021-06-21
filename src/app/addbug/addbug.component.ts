@@ -18,9 +18,9 @@ export class AddBugComponent implements OnInit {
 
   private createForm(){
     this.AddBugForm = this.fb.group({
-      Titre: ['', Validators.required],
-      Description: ['', Validators.required],
-      allAliasView: this.fb.array([
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      alias: this.fb.array([
       ]),
     });
   }
@@ -31,15 +31,15 @@ export class AddBugComponent implements OnInit {
   listAlias = [{alias: "Important"},{alias:"Moyen"},{alias:"faible"}];
   listStatus= ["A faire","En cours","Resolue"];
   
-  get allAliasView() {
-    return this.AddBugForm.get('allAliasView') as FormArray;
+  get alias() {
+    return this.AddBugForm.get('alias') as FormArray;
   }
   addAlias(text) {
-      this.allAliasView.push(this.fb.control(text));
+      this.alias.push(this.fb.control(text));
   }
   
   deleteAlias(text){
-    this.allAliasView.removeAt(text);
+    this.alias.removeAt(text);
   }
   
   onSubmit() {
@@ -50,9 +50,9 @@ export class AddBugComponent implements OnInit {
   }
   
   create(){
-    const title = this.AddBugForm.get("Titre").value;
-    const description = this.AddBugForm.get("Description").value;
-    const alias = this.AddBugForm.get("allAliasView").value;
+    const title = this.AddBugForm.get("title").value;
+    const description = this.AddBugForm.get("description").value;
+    const alias = this.AddBugForm.get("alias").value;
     this.addNewBug({title:title, description:description, alias:alias});
     
     this.ServiceService.create(this.AddBugForm.value).subscribe(res=>{

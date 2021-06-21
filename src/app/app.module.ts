@@ -8,13 +8,17 @@ import { AddComponent } from './add/add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddBugComponent } from './addbug/addbug.component';
 import { ShowbugComponent } from './showbug/showbug.component';
+import { DeletebugComponent } from './deletebug/deletebug.component';
+import { UpdatebugComponent } from './updatebug/updatebug.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddComponent,
     AddBugComponent,
-    ShowbugComponent
+    ShowbugComponent,
+    DeletebugComponent,
+    UpdatebugComponent
   ],
   imports: [
     BrowserModule,

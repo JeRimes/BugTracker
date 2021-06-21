@@ -3,14 +3,15 @@
     margin:10px 0;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 .flex-container{
     display: flex;
     background: #212529;
     color:white;
     flex-direction: column;
-    align-items: center;
     width: 50vw;
+    margin:10px;
     padding: 20px;
     border-radius: 10px;
 }

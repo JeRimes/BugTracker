@@ -1,0 +1,17 @@
+<h1>Detail du bug</h1>
+<!-- attention valeur du formulaire -->
+<form [formGroup]="UpdateForm" (ngSubmit)="edit()"> 
+<div class="row-bug"> 
+    <div class="flex-container">
+        <div>
+            <p>{{BugDetail| json}}</p>
+            <input value="{{BugDetail._id}}" id="id" formControlName="_id">
+            <input value="{{BugDetail.title}}" type="text" id="title" formControlName="title" [(ngModel)]="BugDetail.title">
+            <input value="{{BugDetail.description}}" id="description" formControlName="description" [(ngModel)]="BugDetail.description">
+            <input value="{{BugDetail.alias}}" id="alias" formControlName="alias" [(ngModel)]="BugDetail.alias">
+        </div>
+        <button type="button" (click)="edit()">Update</button>
+    </div>
+</div>
+</form>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
