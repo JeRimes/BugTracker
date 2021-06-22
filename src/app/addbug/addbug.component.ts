@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/co
 import { FormBuilder ,FormArray, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Bug } from '../@shared/models/bug';
-import{ServiceService}from'../service.service';
+import { BugService } from '../services/bug.service'
 
 @Component({
   selector: 'app-addbug',
@@ -11,7 +11,7 @@ import{ServiceService}from'../service.service';
 })
 
 export class AddBugComponent implements OnInit {
-  constructor(private fb: FormBuilder,  private route: ActivatedRoute, public ServiceService: ServiceService) { 
+  constructor(private fb: FormBuilder,public BugService: BugService) { 
     this.createForm();
   }
   AddBugForm:FormGroup;
@@ -24,8 +24,8 @@ export class AddBugComponent implements OnInit {
       ]),
     });
   }
-//une partie du bug
-  @Output() BugToSend = new EventEmitter<Partial<Bug>>();
+  //une partie du bug
+  //@Output() BugToSend = new EventEmitter<Partial<Bug>>();
 
 
   listAlias = [{alias: "Important"},{alias:"Moyen"},{alias:"faible"}];
@@ -42,27 +42,26 @@ export class AddBugComponent implements OnInit {
     this.alias.removeAt(text);
   }
   
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.AddBugForm.value);
-    alert("send data");
-    this.create();
-  }
+  // onSubmit() {
+  //   // TODO: Use EventEmitter with form value
+  //   console.warn(this.AddBugForm.value);
+  //   alert("send data");
+  //   this.create();
+  // }
   
   create(){
     const title = this.AddBugForm.get("title").value;
     const description = this.AddBugForm.get("description").value;
     const alias = this.AddBugForm.get("alias").value;
-    this.addNewBug({title:title, description:description, alias:alias});
-    
-    this.ServiceService.create(this.AddBugForm.value).subscribe(res=>{
+    //this.addNewBug({title:title, description:description, alias:alias});
+    this.BugService.create(this.AddBugForm.value).subscribe(res=>{
       alert("Bug created");
     })  
   }
 
-  addNewBug(value: Partial<Bug>){
-    this.BugToSend.emit(value);
-  }
+  // addNewBug(value: Partial<Bug>){
+  //   this.BugToSend.emit(value);
+  // }
 
   ngOnInit(): void {
 

@@ -1,7 +1,7 @@
 
 <div class="flex bg-dark">
     <h1>Add Bug</h1>
-    <form [formGroup]="AddBugForm" (ngSubmit)="onSubmit()"> 
+    <form [formGroup]="AddBugForm" (ngSubmit)="create()"> 
         <div class="flex-container">
             <label for="title">Title</label>
             <input class="form-control" id="Titre" type="text" formControlName="title">

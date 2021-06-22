@@ -1,15 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
-import { Bug } from './@shared/models/bug';
+import { Bug } from '../@shared/models/bug';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceService {
-  private apiServer = "https://crudcrud.com/api/94e6469a4ac840038558752013061e3e";
+export class BugService {
+  private apiServer = "https://crudcrud.com/api/42569f8a817047f3803e79b02f9f529c";
+  
   constructor(private httpClient: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,6 +23,7 @@ export class ServiceService {
   getAll(): Observable<Bug[]> {
     return this.httpClient.get<Bug[]>(this.apiServer + '/addbug/')
   }
+
   update(id, product): Observable<Bug> {
     return this.httpClient.put<Bug>(this.apiServer + '/addbug/' + id, JSON.stringify(product), this.httpOptions)
   }

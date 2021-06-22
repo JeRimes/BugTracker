@@ -5,10 +5,10 @@
     <div class="flex-container">
         <div>
             <p>{{BugDetail| json}}</p>
-            <input value="{{BugDetail._id}}" id="id" formControlName="_id">
-            <input value="{{BugDetail.title}}" type="text" id="title" formControlName="title" [(ngModel)]="BugDetail.title">
-            <input value="{{BugDetail.description}}" id="description" formControlName="description" [(ngModel)]="BugDetail.description">
-            <input value="{{BugDetail.alias}}" id="alias" formControlName="alias" [(ngModel)]="BugDetail.alias">
+            <input id="id" formControlName="_id">
+            <input type="text" id="title" formControlName="title" >
+            <input id="description" formControlName="description" >
+            <!-- <input id="alias" formControlName="alias"> -->
         </div>
         <button type="button" (click)="edit()">Update</button>
     </div>
