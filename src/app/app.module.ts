@@ -11,6 +11,9 @@ import { ShowbugComponent } from './showbug/showbug.component';
 import { DeletebugComponent } from './deletebug/deletebug.component';
 import { UpdatebugComponent } from './updatebug/updatebug.component';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import{BrowserAnimationsModule}from '@angular/platform-browser/animations'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,9 @@ import { UpdatebugComponent } from './updatebug/updatebug.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

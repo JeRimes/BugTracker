@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Bug } from '../@shared/models/bug';
 import{ServiceService}from'../service.service';
 @Component({
