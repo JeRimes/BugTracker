@@ -32,17 +32,16 @@
                 
             </div>
         </div>
-    <select class="form-control" formControlName="status">
+    <!-- <select class="form-control" formControlName="status">
         <option *ngFor="let l of listStatus; let index = index;">{{l}}</option>
-    </select>
+    </select> -->
 
       </form>
 
       <p>Complete the form to enable button.</p>
-      <!-- class="btn btn-primary" -->
       <button class="btn btn-success" (click)="create()" [disabled]="!AddBugForm.valid">Submit</button>
-      <p>Form Status: {{ AddBugForm.status }}</p>
-      <p>Value: {{ AddBugForm.value | json}}</p>
+      <!-- <p>Form Status: {{ AddBugForm.status }}</p>
+      <p>Value: {{ AddBugForm.value | json}}</p> -->
     </div>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">

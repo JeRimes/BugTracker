@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
 import { FormBuilder ,FormArray, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Bug } from '../@shared/models/bug';
+import { Bug, BugStatus } from '../@shared/models/bug';
 import { BugService } from '../services/bug.service'
 
 @Component({
@@ -11,7 +11,7 @@ import { BugService } from '../services/bug.service'
 })
 
 export class AddBugComponent implements OnInit {
-  constructor(private fb: FormBuilder,public BugService: BugService) { 
+  constructor(private fb: FormBuilder, private route: ActivatedRoute,public BugService: BugService) { 
     this.createForm();
   }
   AddBugForm:FormGroup;
@@ -27,7 +27,6 @@ export class AddBugComponent implements OnInit {
   }
   //une partie du bug
   //@Output() BugToSend = new EventEmitter<Partial<Bug>>();
-
 
   listAlias = [{alias: "Important"},{alias:"Moyen"},{alias:"faible"}];
   listStatus= ["open","in-progress","fixed"];
@@ -46,21 +45,30 @@ export class AddBugComponent implements OnInit {
     this.alias.removeAt(text);
   }
   
-  // onSubmit() {
-  //   // TODO: Use EventEmitter with form value
-  //   console.warn(this.AddBugForm.value);
-  //   alert("send data");
-  //   this.create();
-  // }
-  
+  BugEdit: Partial<Bug>;
+  public BugStatus = BugStatus;
   create(){
+    const status= this.route.snapshot.paramMap.get('id');
     const title = this.AddBugForm.get("title").value;
     const description = this.AddBugForm.get("description").value;
-    const alias = this.AddBugForm.get("alias").value;
-    //this.addNewBug({title:title, description:description, alias:alias});
-    this.BugService.create(this.AddBugForm.value).subscribe(res=>{
+    //const alias = this.AddBugForm.get("alias").value;
+    if(status==="todo"){
+      this.BugEdit =({title:title, description:description, status:this.BugStatus["Open"]});
+    }
+    else if(status==="inProgress")
+    { 
+      this.BugEdit =({title:title, description:description, status:this.BugStatus["InProgress"]});
+    }
+    else if(status==="Fixed")
+    {
+      this.BugEdit =({title:title, description:description, status:this.BugStatus["Fixed"]});
+    }
+    this.BugService.create(this.BugEdit).subscribe(res=>{
       alert("Bug created");
     })  
+    // this.BugService.create(this.AddBugForm.value).subscribe(res=>{
+    //   alert("Bug created");
+    // })  
   }
 
   // addNewBug(value: Partial<Bug>){

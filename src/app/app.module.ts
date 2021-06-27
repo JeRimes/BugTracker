@@ -8,7 +8,6 @@ import { AddComponent } from './add/add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddBugComponent } from './addbug/addbug.component';
 import { ShowbugComponent } from './showbug/showbug.component';
-import { DeletebugComponent } from './deletebug/deletebug.component';
 import { UpdatebugComponent } from './updatebug/updatebug.component';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -20,7 +19,6 @@ import{BrowserAnimationsModule}from '@angular/platform-browser/animations'
     AddComponent,
     AddBugComponent,
     ShowbugComponent,
-    DeletebugComponent,
     UpdatebugComponent
   ],
   imports: [

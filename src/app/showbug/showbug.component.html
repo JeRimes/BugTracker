@@ -14,13 +14,16 @@
 <div class="container py-5">
     <div class="row" cdkDropListGroup>
       <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let taskGroup of taskGroups" cdkDropList [cdkDropListData]="taskGroup.tasks" (cdkDropListDropped)="onTaskDrop($event)" id="{{taskGroup.id}}">
-        <button type="button" class="btn btn-success" routerLink="/addbug" routerLinkActive="active">Add Bug</button>
+        <!-- <button type="button" class="btn btn-success" routerLink="/addbug" routerLinkActive="active">Add Bug</button>
+         -->
+         <button type="button" class="btn btn-success" [routerLink]="['/addbug/', taskGroup.id]" routerLinkActive="active">Add Bug</button>
+        
         <div class="bg-light shadow rounded p-3">
           <h2 class="font-weight-normal text-center">{{ taskGroup.title }}</h2>
           <div class="bg-white shadow my-3 p-4" *ngFor="let task of taskGroup.tasks" cdkDrag>
             <h4 class="font-weight-normal">{{ task.title }}</h4>
             <p class="lead mb-0">{{ task.description }}</p>
-            <p class="lead mb-0">{{ task._id }}</p>
+            <!-- <p class="lead mb-0">{{ task._id }}</p> -->
             <p class="chip">{{ task.alias}}</p>
             <p class="chip">{{ task.status}}</p>
             <button type="button" class="btn btn-dark" [routerLink]="['/update/', task._id]">Edit</button>
