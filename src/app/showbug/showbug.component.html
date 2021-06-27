@@ -22,8 +22,9 @@
             <p class="lead mb-0">{{ task.description }}</p>
             <p class="lead mb-0">{{ task._id }}</p>
             <p class="chip">{{ task.alias}}</p>
+            <p class="chip">{{ task.status}}</p>
             <button type="button" class="btn btn-dark" [routerLink]="['/update/', task._id]">Edit</button>
-          <button type="button" class="btn btn-danger" [routerLink]="['/delete/', task._id]">Delete</button>
+          <button type="button" class="btn btn-danger" (click)="delete(task._id)">Delete</button>
           </div>
         </div>
   

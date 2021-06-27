@@ -22,6 +22,7 @@ export class AddBugComponent implements OnInit {
       description: ['', Validators.required],
       alias: this.fb.array([
       ]),
+      status:['']
     });
   }
   //une partie du bug
@@ -29,8 +30,11 @@ export class AddBugComponent implements OnInit {
 
 
   listAlias = [{alias: "Important"},{alias:"Moyen"},{alias:"faible"}];
-  listStatus= ["A faire","En cours","Resolue"];
-  
+  listStatus= ["open","in-progress","fixed"];
+
+  get status(){
+    return this.AddBugForm.get('status');
+  }
   get alias() {
     return this.AddBugForm.get('alias') as FormArray;
   }

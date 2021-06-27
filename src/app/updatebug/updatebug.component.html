@@ -1,16 +1,23 @@
-<h1>Detail du bug</h1>
+
 <!-- attention valeur du formulaire -->
 <form [formGroup]="UpdateForm" (ngSubmit)="edit()"> 
 <div class="row-bug"> 
     <div class="flex-container">
-        <div>
-            <p>{{BugDetail| json}}</p>
-            <input id="id" formControlName="_id">
+        <h1>Detail du bug</h1>
+            <!-- <p>{{BugDetail| json}}</p> -->
+            <!-- <input id="id" formControlName="_id"> -->
+            
+            <label for="title">Titre</label>
             <input type="text" id="title" formControlName="title" >
+         
+         
+            <label for="description">Description</label>
             <input id="description" formControlName="description" >
+ 
             <!-- <input id="alias" formControlName="alias"> -->
-        </div>
-        <button type="button" (click)="edit()">Update</button>
+            <input id="status" formControlName="status">
+
+        <button type="button" class="btn btn-dark" (click)="edit()">Update</button>
     </div>
 </div>
 </form>

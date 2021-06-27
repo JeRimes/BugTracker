@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, partition, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { Bug } from '../@shared/models/bug';
@@ -9,7 +9,7 @@ import { Bug } from '../@shared/models/bug';
   providedIn: 'root'
 })
 export class BugService {
-  private apiServer = "https://crudcrud.com/api/42569f8a817047f3803e79b02f9f529c";
+  private apiServer = "https://crudcrud.com/api/7865002c2a0d4506bcad1d401d3a553d";
   
   constructor(private httpClient: HttpClient) { }
   httpOptions = {
@@ -17,14 +17,31 @@ export class BugService {
       'Content-Type': 'application/json'
     })
   }
+
+  
   create(bug): Observable<Bug> {
     return this.httpClient.post<Bug>(this.apiServer + '/addbug/', JSON.stringify(bug), this.httpOptions)
   } 
   getAll(): Observable<Bug[]> {
     return this.httpClient.get<Bug[]>(this.apiServer + '/addbug/')
   }
-
+  getAllOpen(): Observable<Bug[]> {
+    return this.httpClient.get<Bug[]>(this.apiServer + '/addbug/').pipe(
+      map(items => items.filter(i=>i.status=="open"))
+    );
+  }
+  getAllInProgress(): Observable<Bug[]> {
+    return this.httpClient.get<Bug[]>(this.apiServer + '/addbug/').pipe(
+      map(items => items.filter(i=>i.status=="in-progress"))
+    );
+  }
+  getAllInFix(): Observable<Bug[]> {
+    return this.httpClient.get<Bug[]>(this.apiServer + '/addbug/').pipe(
+      map(items => items.filter(i=>i.status=="fixed"))
+    );
+  }
   update(id, product): Observable<Bug> {
+    console.log(product);
     return this.httpClient.put<Bug>(this.apiServer + '/addbug/' + id, JSON.stringify(product), this.httpOptions)
   }
   delete(id){

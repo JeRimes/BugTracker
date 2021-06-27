@@ -1,0 +1,13 @@
+.row-bug{
+    display:flex;
+    justify-content: center;
+}
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+}
+.flex-container>* {
+    padding: 10px;
+    margin:5px 0;
+}

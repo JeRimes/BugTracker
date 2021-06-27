@@ -11,11 +11,12 @@ export class DeletebugComponent implements OnInit {
   constructor(private route: ActivatedRoute,public BugService: BugService, private router: Router) { }
 
   delete(id){
-    this.BugService.delete(id).subscribe(res=>{
-    });
-    this.router.navigate(['/showbug']).then(() => {
-     location.reload();
-    });
+    this.BugService.delete(id).subscribe(()=>{
+      //this.bug
+  });
+    // this.router.navigate(['/showbug']).then(() => {
+    //  location.reload();
+    // });
 
   }
   ngOnInit(): void {

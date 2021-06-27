@@ -21,6 +21,7 @@ export class UpdatebugComponent implements OnInit {
       description: ['', Validators.required],
       // alias: this.fb.array([
       // ]),
+      status:['']
     });
   }
   BugEdit: Partial<Bug>;
@@ -29,8 +30,9 @@ export class UpdatebugComponent implements OnInit {
     const id= this.route.snapshot.paramMap.get('id');
     const title = this.UpdateForm.get("title").value;
     const description = this.UpdateForm.get("description").value;
-    const alias = this.UpdateForm.get("alias").value;
-    this.BugEdit =({title:title, description:description, alias:alias});
+    //const alias = this.UpdateForm.get("alias").value;
+    const status = this.UpdateForm.get("status").value;
+    this.BugEdit =({title:title, description:description, status:status});
     this.BugService.update(id,this.BugEdit).subscribe(res=>{
       alert("Bug update");
     })  
@@ -39,7 +41,7 @@ export class UpdatebugComponent implements OnInit {
   ngOnInit(): void {
     this.BugService.getById(this.route.snapshot.paramMap.get('id')).subscribe((data: Bug)=>{
       this.BugDetail = data;
-      this.UpdateForm.setValue({_id:data._id,title:data.title, description:data.description});
+      this.UpdateForm.setValue({_id:data._id,title:data.title, description:data.description, status:data.status});
     });
   }
 
