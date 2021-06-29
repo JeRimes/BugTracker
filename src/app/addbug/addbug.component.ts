@@ -11,7 +11,7 @@ import { BugService } from '../services/bug.service'
 })
 
 export class AddBugComponent implements OnInit {
-  constructor(private fb: FormBuilder, private route: ActivatedRoute,public BugService: BugService) { 
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,public BugService: BugService) { 
     this.createForm();
   }
   AddBugForm:FormGroup;
@@ -65,10 +65,11 @@ export class AddBugComponent implements OnInit {
     }
     this.BugService.create(this.BugEdit).subscribe(res=>{
       alert("Bug created");
-    })  
-    // this.BugService.create(this.AddBugForm.value).subscribe(res=>{
-    //   alert("Bug created");
-    // })  
+    });
+    
+    this.router.navigate(['/showbug']);
+
+ 
   }
 
   // addNewBug(value: Partial<Bug>){

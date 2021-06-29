@@ -9,7 +9,7 @@ import { Bug } from '../@shared/models/bug';
   providedIn: 'root'
 })
 export class BugService {
-  private apiServer = "https://crudcrud.com/api/437f91dbcc954a9cb26dc33cda4dfaa6";
+  private apiServer = "https://crudcrud.com/api/39086109ada44959a96caf9bb0f4628b";
   
   constructor(private httpClient: HttpClient) { }
   httpOptions = {

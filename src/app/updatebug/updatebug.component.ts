@@ -10,7 +10,7 @@ import { FormBuilder ,FormArray, Validators, FormGroup } from '@angular/forms';
 })
 export class UpdatebugComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, public BugService: BugService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute,private router: Router, public BugService: BugService) {
     this.updateForm();
    }
   UpdateForm:FormGroup;
@@ -35,7 +35,8 @@ export class UpdatebugComponent implements OnInit {
     this.BugEdit =({title:title, description:description, status:status});
     this.BugService.update(id,this.BugEdit).subscribe(res=>{
       alert("Bug update");
-    })  
+    });
+    this.router.navigate(['/showbug']);
   }
   @Input() BugDetail!: Bug;
   ngOnInit(): void {
